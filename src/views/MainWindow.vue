@@ -7,16 +7,16 @@
 
   <div class ="main-panel">
     <div class = main-icons-top-bottom>
-      <div class = "main-icons" @click="pressBut">
+      <div class = "main-icons" @click="pressNote">
         <img src="/icons/note.svg">
       </div>
-      <div class = "main-icons" @click = "pressBut">
+      <div class = "main-icons" @click = "pressChat">
         <img src="/icons/chat.svg">
       </div>
-      <div class = "main-icons" @click = "pressBut">
+      <div class = "main-icons" @click = "pressFConsultant">
         <img src="/icons/finance.svg">
       </div>
-      <div class = "main-icons" @click = "pressBut">
+      <div class = "main-icons" @click = "pressNews">
         <img src="/icons/news.svg">
       </div>
 
@@ -26,11 +26,11 @@
     </div>
 
     <div class = main-icons-top-bottom>
-      <div class = "main-icons" @click = "pressBut">
+      <div class = "main-icons" @click = "pressProfile">
         <img src="/icons/profile.svg">
       </div>
 
-      <div class = "main-icons" @click = "pressBut">
+      <div class = "main-icons" @click = "pressLogout">
         <img src="/icons/signout.svg">
       </div>
     </div>
@@ -39,20 +39,67 @@
 
   <div  class = "main-app-window">
     Главное окно приложения {{isContButton}} раз {{isCount}} count
+    <mcv-note v-if="isNote"></mcv-note>
+    <mcv-chat v-if="isChat"></mcv-chat>
+    <mcv-f-consultant v-if="isFConsultant"></mcv-f-consultant>
+    <mcv-news v-if="isNews"></mcv-news>
+    <mcv-profile v-if="isProfile"></mcv-profile>
   </div>
+
 </div>
 </template>
 
 <script>
+import McvNote from '@/components/Note.vue'
+import McvChat from '@/components/Chat.vue'
+import McvFConsultant from '@/components/FConsultant.vue'
+import McvNews from '@/components/News.vue'
+import McvProfile from '@/components/Profile.vue'
+
 export default {
   name: 'MainWindow',
+  components:{
+    McvNote,
+    McvChat,
+    McvFConsultant,
+    McvNews,
+    McvProfile
+  },
   computed:{
     isContButton(){
       return this.$store.state.main.countButton
     },
     isCount(){
       return this.$store.state.count
-    }
+    },
+    isSubmitting(){
+      return this.$store.state.auth.isSubmitting
+    },
+    isLoggedIn(){
+      return this.$store.state.auth.isLoggedIn
+    },
+    currentUser(){
+      return this.$store.state.auth.currentUser
+    },
+    validationErrors(){
+      return this.$store.state.auth.validationErrors
+    },
+    isNote(){
+      return this.$store.state.isNote
+    },
+    isChat(){
+      return this.$store.state.isChat
+    },
+    isFConsultant(){
+      return this.$store.state.isFConsultant
+    },
+    isNews(){
+      return this.$store.state.isNews
+    },
+    isProfile(){
+      return this.$store.state.isProfile
+    },
+
   },
   methods:{
     pressBut(){
@@ -61,7 +108,31 @@ export default {
       this.$store.commit('increment')
       console.log('press', this.$store.state.main.countButton)
       console.log('press count', this.$store.state.count)
+    },
+    pressAuthorization(){
+      this.$store.dispatch('authorization')
+    },
+    pressLogout(){
+      this.$store.dispatch('logout')
+     // this.$route.push({name: 'hello'})
+      this.$router.go(0); //todo временно, т.к. не работает переход на home
+    },
+    pressNote(){
+      this.$store.commit('toNote')
+    },
+    pressChat(){
+      this.$store.commit('toChat')
+    },
+    pressFConsultant(){
+      this.$store.commit('toFConsultant')
+    },
+    pressNews(){
+      this.$store.commit('toNews')
+    },
+    pressProfile(){
+      this.$store.commit('toProfile')
     }
+
 
   }
 
@@ -75,7 +146,4 @@ export default {
 </script>
 
 <style>
-
-
-
 </style>
