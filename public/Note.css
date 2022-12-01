@@ -1,0 +1,39 @@
+.note{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 350px 80%;
+    grid-template-rows: 100%;
+
+}
+.notes-list{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: rgba(187, 200, 200, 1);
+}
+.notes-content{
+    display: flex;
+    background: rgba(195, 210, 210, 1);
+}
+.note-item{
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
+.note-item:hover {
+    background: rgba(195, 210, 210, 1);
+}
+
+.note-title, note-delete{
+    display: flex;
+}
+
+.note-form{
+    display: grid;
+    padding-left: 40px;
+    grid-template-columns: 80% 20%;
+}
+.note-name-placeholder, note-submit{
+    display: flex;
+}

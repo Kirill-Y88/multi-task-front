@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import main from '@/store/modules/main'
 import auth from '@/store/modules/auth'
+import note from '@/store/modules/note'
 
 export default createStore({
     state: { /* для глобальных состояний */
@@ -67,6 +68,7 @@ export default createStore({
     },
     modules: {
         main,
-        auth
+        auth,
+        note
     }
 })
