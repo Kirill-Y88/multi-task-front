@@ -1,6 +1,12 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HelloWorld from "@/components/HelloWorld.vue";
 import MainWindow from "@/views/MainWindow.vue";
+import Note from '@/views/Note.vue'
+import Chat from '@/views/Chat.vue'
+import FConsultant from '@/views/FConsultant.vue'
+import News from '@/views/News.vue'
+import Profile from '@/views/Profile.vue'
+
 
 const routes = [
 
@@ -14,13 +20,34 @@ const routes = [
         name: 'home',
         component: MainWindow
 
+    },
+    {
+        path: '/note',
+        name: 'note',
+        component: Note
+    },
+    {
+        path: '/chat',
+        name: 'chat',
+        component: Chat
+    },
+    {
+        path: '/fconsultant',
+        name: 'fconsultant',
+        component: FConsultant
+    },
+    {
+        path: '/news',
+        name: 'news',
+        component: News
+    },
+    {
+        path: '/profile',
+        name: 'profile',
+        component: Profile
     }
 
-
-
 ]
-
-
 
 
 const router = createRouter({
