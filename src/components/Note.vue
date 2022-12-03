@@ -3,7 +3,7 @@
   <div class="note" >
     <div class = "notes-list" id="todo-list-example">
       <h3>Список заметок</h3>
-      <form class="note-form" v-on:submit.prevent="addNewTodo">
+      <form class="note-form" v-on:submit.prevent="addNewNote">
 <!--        <label for="new-note">Добавить задачу</label>-->
         <input class="note-name-placeholder"
             v-model="newNoteText"
@@ -27,9 +27,14 @@
 
     </div>
     <div class="notes-content">
-      NOTES CONTENT
-      {{currentSelectedNoteId}}
-      {{currentNoteContent}}
+<!--      {{currentSelectedNoteTitle}}-->
+<!--      {{currentNoteContent}}-->
+      <div class="note-title">{{currentSelectedNoteTitle}} </div>
+      <textarea v-model="this.$store.state.note.selectedNote.content"
+                class="note-text-area"></textarea>
+      <div class="note-send" @click="addNewNote" >
+        <img src="/icons/carbon_add-alt.svg" width="30" height="30" >
+      </div>
     </div>
 
   </div>
@@ -46,9 +51,10 @@ export default {
 
   data() {
     return {
-      newNoteText: this.$store.state.note.newNoteText,
-      notes: this.$store.state.note.notes,
-      nextNoteId: this.$store.state.note.nextNoteId
+       newNoteText: '',
+ //      notes: this.$store.state.note.notes,
+  //     nextNoteId: this.$store.state.note.nextNoteId,
+
     }
   },
   computed:{
@@ -57,8 +63,15 @@ export default {
     },
     currentNoteContent(){
       return this.$store.state.note.selectedNote.content
+    },
+    notes(){
+      return this.$store.state.note.notes
+    },
+    currentSelectedNoteTitle(){
+      return this.$store.state.note.selectedNote.title
     }
   },
+
 
   methods: {
 
@@ -69,6 +82,7 @@ export default {
     selectNote(note){
       this.$store.commit('changeSelectedNote',note)
       console.log('note', note)
+      console.log('content',this.currentNoteContent)
     }
 
   },

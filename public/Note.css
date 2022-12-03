@@ -25,8 +25,10 @@
     background: rgba(195, 210, 210, 1);
 }
 
-.note-title, note-delete{
+.note-title, .note-delete{
     display: flex;
+    margin : 0px 0px;
+    padding: 10px 5px;
 }
 
 .note-form{
@@ -34,6 +36,24 @@
     padding-left: 40px;
     grid-template-columns: 80% 20%;
 }
-.note-name-placeholder, note-submit{
+.note-name-placeholder, .note-submit{
     display: flex;
+}
+.notes-content{
+    display: grid;
+    grid-template-rows: 5% 90% 5%;
+}
+.note-text-area{
+
+    margin : 0 0;
+    padding: 5px 5px;
+    display: flex;
+    resize: none;
+    width: 100%;
+    height: 100%;
+    font-family: "Comic Sans MS";
+    font-size: 16px;
+}
+.note-send{
+    padding: 15px;
 }

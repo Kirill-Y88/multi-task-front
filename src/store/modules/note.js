@@ -1,7 +1,7 @@
 
 const state = {
 
-    newNoteText: '',
+    //newNoteText: '',
     notes: [
         {
             id: 1,
@@ -42,7 +42,8 @@ const mutations = {
     changeSelectedNote(state,  note){
         state.selectedNoteId = note.id
         state.selectedNote = note
-    }
+    },
+
 
 }
 

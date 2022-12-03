@@ -38,7 +38,7 @@
   </div>
 
   <div  class = "main-app-window">
-    Главное окно приложения {{isContButton}} раз {{isCount}} count
+<!--    Главное окно приложения {{isContButton}} раз {{isCount}} count-->
     <mcv-note v-if="isNote"></mcv-note>
     <mcv-chat v-if="isChat"></mcv-chat>
     <mcv-f-consultant v-if="isFConsultant"></mcv-f-consultant>
