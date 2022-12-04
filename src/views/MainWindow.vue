@@ -32,9 +32,19 @@
         <img src="/icons/profile.svg">
       </div >
 
-      <div class = "main-icons" @click = "pressLogout">
-        <img src="/icons/signout.svg">
-      </div>
+      <template v-if="isLoggedIn">
+        <div class = "main-icons" @click = "pressLogout">
+          <img src="/icons/signout.svg">
+        </div>
+      </template>
+
+      <template v-if="!isLoggedIn">
+        <div class = "main-icons" @click = "pressLogin">
+          <img src="/icons/simple-line-icons_login.svg">
+        </div>
+      </template>
+
+
     </div>
 
   </div>
@@ -119,6 +129,12 @@ export default {
      // this.$route.push({name: 'hello'})
       this.$router.go(0); //todo временно, т.к. не работает переход на home
     },
+    pressLogin(){
+      this.$store.dispatch('login')
+      // this.$route.push({name: 'hello'})
+      //this.$router.go(0); //todo временно, т.к. не работает переход на home
+    }
+    ,
     pressNote(){
       this.$router.push({name: 'note'})
       // this.$store.commit('toNote')

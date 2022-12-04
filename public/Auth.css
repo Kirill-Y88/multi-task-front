@@ -1,0 +1,12 @@
+.auth-register{
+    background: rgba(187, 200, 200, 1);
+}
+
+.auth-fieldset{
+    margin: auto;
+    width: 40%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 50px 50px 50px
+    /*flex-direction: column;*/
+}

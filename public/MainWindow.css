@@ -40,3 +40,19 @@ body, html{
 .main-app-window{
 background-color: rgba(187, 200, 200, 1);
 }
+
+.font_1, .font_2, .font_3{
+ font-family: "Calibri";
+}
+
+.font_1{
+ font-family: "Comic Sans MS";
+
+}
+
+.font_2{
+ font-size: 20px;
+}
+.font_3{
+ font-family: "Comic Sans MS";
+}

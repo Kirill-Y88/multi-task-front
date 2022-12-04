@@ -46,6 +46,10 @@ const actions ={
     logout(context){
         console.log('context', context)
         return context.commit('registerLogout')
+    },
+    login(context){
+        console.log('context', context)
+        return context.commit('registerSuccess')
     }
 
 }

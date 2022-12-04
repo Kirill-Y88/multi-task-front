@@ -1,11 +1,14 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HelloWorld from "@/components/HelloWorld.vue";
-import MainWindow from "@/views/MainWindow.vue";
+//import MainWindow from "@/views/MainWindow.vue";
 import Note from '@/views/Note.vue'
 import Chat from '@/views/Chat.vue'
 import FConsultant from '@/views/FConsultant.vue'
 import News from '@/views/News.vue'
 import Profile from '@/views/Profile.vue'
+import Authorization from "@/views/Authorization.vue";
+import Registration from "@/views/Registration.vue";
+import StartWindow from "@/views/StartWindow.vue";
 
 
 const routes = [
@@ -18,7 +21,7 @@ const routes = [
     {
         path: '/home',
         name: 'home',
-        component: MainWindow
+        component: StartWindow
 
     },
     {
@@ -45,6 +48,16 @@ const routes = [
         path: '/profile',
         name: 'profile',
         component: Profile
+    },
+    {
+        path: '/authorization',
+        name: 'authorization',
+        component: Authorization
+    },
+    {
+        path: '/registration',
+        name: 'registration',
+        component: Registration
     }
 
 ]

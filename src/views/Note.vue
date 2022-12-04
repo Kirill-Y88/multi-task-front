@@ -1,4 +1,4 @@
-<template>
+<template >
 
   <div class="note" >
     <div class = "notes-list" id="todo-list-example">
@@ -38,6 +38,8 @@
     </div>
 
   </div>
+
+
 </template>
 
 <script>
@@ -69,7 +71,10 @@ export default {
     },
     currentSelectedNoteTitle(){
       return this.$store.state.note.selectedNote.title
-    }
+    },
+    isLoggedIn(){
+      return this.$store.state.auth.isLoggedIn
+    },
   },
 
 
