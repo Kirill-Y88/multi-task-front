@@ -1,11 +1,13 @@
 <template>
-  <div>
-    START WINDOW
-    Вход не выполнен
-    <router-link v-bind:to="{name: 'authorization'}">Auto</router-link>
-
-    <router-link v-bind:to="{name: 'registration'}">Regist</router-link>
-
+  <div class="start-window">
+    <h2>START WINDOW</h2>
+      <div v-if="!isLoggedIn">
+        <p class="font_2" >Вход не выполнен</p>
+        <router-link v-bind:to="{name: 'authorization'}">Auto</router-link>
+          <span>||</span>
+        <router-link v-bind:to="{name: 'registration'}">Regist</router-link>
+      </div>
+    <p class="font_2" v-if="isLoggedIn">Здравствуй, дорогой!</p>
   </div>
 
 

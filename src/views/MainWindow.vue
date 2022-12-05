@@ -22,7 +22,7 @@
         <img src="/icons/news.svg">
       </div >
 
-      <div class = "main-icons" @click = "pressBut">
+      <div class = "main-icons" @click = "pressAdd">
         <img src="/icons/carbon_add-alt.svg">
       </div>
     </div>
@@ -136,23 +136,47 @@ export default {
     }
     ,
     pressNote(){
-      this.$router.push({name: 'note'})
+      if(this.$store.state.auth.isLoggedIn) {
+        this.$router.push({name: 'note'})
+      }else {
+        this.pressAdd()
+      }
       // this.$store.commit('toNote')
     },
     pressChat(){
+      if(this.$store.state.auth.isLoggedIn) {
       this.$router.push({name: 'chat'})
+      }else {
+        this.pressAdd()
+      }
       // this.$store.commit('toChat')
     },
     pressFConsultant(){
+      if(this.$store.state.auth.isLoggedIn) {
       this.$router.push({name: 'fconsultant'})
+    }else {
+      this.pressAdd()
+    }
       // this.$store.commit('toFConsultant')
     },
     pressNews(){
+      if(this.$store.state.auth.isLoggedIn) {
       this.$router.push({name: 'news'})
+    }else {
+    this.pressAdd()
+  }
       // this.$store.commit('toNews')
     },
+    pressAdd() {
+      this.$router.push({name: 'home'})
+    }
+    ,
     pressProfile(){
+      if(this.$store.state.auth.isLoggedIn) {
       this.$router.push({name: 'profile'})
+      }else {
+      this.pressAdd()
+      }
       // this.$store.commit('toProfile')
     }
 

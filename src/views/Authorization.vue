@@ -1,6 +1,6 @@
 <template>
   <div class="auth-register font_2">
-    Authorization
+    <h3>Authorization</h3>
     <form @submit.prevent = "onSubmit" >
         <fieldset class="auth-fieldset font_2">
           <input class="font_2" v-model="username" placeholder="username" >

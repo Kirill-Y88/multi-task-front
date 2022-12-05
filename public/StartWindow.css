@@ -1,0 +1,5 @@
+.start-window{
+    display: flex;
+    flex-direction: column;
+    background: rgba(187, 200, 200, 1);
+}
