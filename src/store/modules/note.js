@@ -1,3 +1,4 @@
+import nodeAPI from "@/api/nodeAPI";
 
 const state = {
 
@@ -25,10 +26,7 @@ const state = {
 
 }
 
-const actions = {
 
-
-}
 
 const mutations = {
     addNewNote(state, title){
@@ -42,6 +40,27 @@ const mutations = {
     changeSelectedNote(state,  note){
         state.selectedNoteId = note.id
         state.selectedNote = note
+    },
+    downloadNote(state, payload){
+        state.notes = payload
+    }
+
+}
+const actions = {
+
+    getAllUserNotes(context, user){
+        return new Promise( () =>{
+            context.commit('registerStart')
+            nodeAPI.getAllUsersNote(user)
+                .then(response => {
+                    context.commit('downloadNote',response.data)
+                    console.log('response' , response)
+                    console.log('responseData' , response.data)
+                })
+                .catch(result => {
+                    console.log('result errors', result)
+                })
+        } )
     },
 
 

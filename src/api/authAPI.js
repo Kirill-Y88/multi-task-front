@@ -12,9 +12,16 @@ const getCurrentUser = () => {
     return axios.get('/user')
 }
 
-const tempGetAllUsers = () =>{
+const tempGetAllUsers = (currentUser) =>{
+    console.log('WTF', currentUser.id)
+    let config = {
+        params: {
+            userId: currentUser.id
+        },
+    }
    // return axios.get('api/v1/users')
-    return axios.get('api/v1/notes')
+    //return axios.get('api/v1/notes')
+    return axios.get('api/v1/notes/userId', config)
 }
 
 export default {

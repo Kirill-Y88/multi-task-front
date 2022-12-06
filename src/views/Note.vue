@@ -88,8 +88,15 @@ export default {
       this.$store.commit('changeSelectedNote',note)
       console.log('note', note)
       console.log('content',this.currentNoteContent)
+    },
+    downloadNotes(){
+      this.$store.dispatch('getAllUserNotes', this.$store.state.auth.currentUser)
     }
 
+  },
+
+  mounted(){
+    this.downloadNotes()
   },
 
 

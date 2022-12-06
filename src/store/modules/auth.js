@@ -5,7 +5,8 @@ const state = {
     isSubmitting: false,
     isLoggedIn: false,
     currentUser: null,
-    validationErrors: null
+    validationErrors: null,
+
 }
 
 
@@ -29,7 +30,8 @@ const mutations = {
         state.isSubmitting = false;
         state.currentUser = null
         state.isLoggedIn = false
-    }
+    },
+
 }
 
 const actions ={
@@ -65,12 +67,14 @@ const actions ={
         console.log('context', context)
         return context.commit('registerSuccess')
     },
-    tempRequest(context){
+    tempRequest(context, user){
         return new Promise( () =>{
             context.commit('registerStart')
-            authAPI.tempGetAllUsers()
+            authAPI.tempGetAllUsers(user)
                 .then(response => {
+                    context.commit('downloadNode',response.data)
                     console.log('response' , response)
+                    console.log('responseData' , response.data)
                 })
                 .catch(result => {
                     console.log('result errors', result)

@@ -29,7 +29,7 @@ export default {
 
   methods: {
     tempGetAllUsers(){
-      this.$store.dispatch('tempRequest')
+      this.$store.dispatch('getAllUserNotes', this.$store.state.auth.currentUser)
     }
   }
 
