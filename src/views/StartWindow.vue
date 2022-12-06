@@ -7,7 +7,8 @@
           <span>||</span>
         <router-link v-bind:to="{name: 'registration'}">Regist</router-link>
       </div>
-    <p class="font_2" v-if="isLoggedIn">Здравствуй, дорогой!</p>
+    <button @click="tempGetAllUsers"> TEST getAllUsers</button>
+    <p class="font_2" v-if="isLoggedIn">Здравствуй, дорогой {{currentUser.login}}!</p>
   </div>
 
 
@@ -21,7 +22,17 @@ export default {
     isLoggedIn(){
       return this.$store.state.auth.isLoggedIn
     },
+    currentUser(){
+      return this.$store.state.auth.currentUser
+    }
+  },
+
+  methods: {
+    tempGetAllUsers(){
+      this.$store.dispatch('tempRequest')
+    }
   }
+
 }
 
 </script>

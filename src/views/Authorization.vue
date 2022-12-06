@@ -3,9 +3,9 @@
     <h3>Authorization</h3>
     <form @submit.prevent = "onSubmit" >
         <fieldset class="auth-fieldset font_2">
-          <input class="font_2" v-model="username" placeholder="username" >
+          <input class="font_2" v-model="login" placeholder="username" >
           <input class="font_2" v-model="password" type="password" placeholder="password">
-          <button class="font_2" @click="onSubmit" > Send</button>
+          <button class="font_2" @click="onSubmitAuto" > Send</button>
 
         </fieldset>
     </form>
@@ -23,17 +23,27 @@ export default {
   name: 'McvAuthorization',
   data(){
     return {
-      username: '',
+      login: '',
       password: ''
     }
   },
 
   methods:{
 
-    onSubmit(){
-      console.log('send', this.username, this.password)
-      this.username = ''
+    onSubmitAuto(){
+           this.$store.dispatch('authorization', {
+        login: this.login,
+        password: this.password
+      })
+          .then(user => {
+            console.log('successfully register user', user)
+            this.$router.push({name: 'home'})
+          })
+
+      this.login = ''
       this.password = ''
+
+
     }
   }
 

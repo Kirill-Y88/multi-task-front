@@ -5,15 +5,21 @@ const register = credentials =>{
 }
 
 const authorization = credentials =>{
-    return axios.post('/users/login',{user:credentials})
+    return axios.post('/login',credentials)
 }
 
 const getCurrentUser = () => {
     return axios.get('/user')
 }
 
+const tempGetAllUsers = () =>{
+   // return axios.get('api/v1/users')
+    return axios.get('api/v1/notes')
+}
+
 export default {
     register,
     authorization,
-    getCurrentUser
+    getCurrentUser,
+    tempGetAllUsers
 }
