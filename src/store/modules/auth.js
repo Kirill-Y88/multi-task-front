@@ -34,6 +34,12 @@ const mutations = {
 
 }
 
+// const getters = {
+//     currentUser: state => {
+//         return state.currentUser
+//     }
+// }
+
 const actions ={
     register(context,credentials){
         console.log('context', context)
@@ -89,5 +95,6 @@ const actions ={
 export default {
     state,
     mutations,
-    actions
+    actions,
+   // getters
 }

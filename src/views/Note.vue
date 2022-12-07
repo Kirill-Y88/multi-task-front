@@ -20,11 +20,11 @@
             v-for="(note,index) in notes"
             :key="note.id"
             :title="note.title"
-            @remove="notes.splice(index, 1)"
+            @remove="deleteNote(notes,index,1)"
             @click="selectNote(note)"
         ></mcv-note-item>
       </ul>
-
+      <!--@remove="notes.splice(index, 1)"-->
     </div>
     <div class="notes-content">
 <!--      {{currentSelectedNoteTitle}}-->
@@ -32,7 +32,7 @@
       <div class="note-title">{{currentSelectedNoteTitle}} </div>
       <textarea v-model="this.$store.state.note.selectedNote.content"
                 class="note-text-area"></textarea>
-      <div class="note-send" @click="addNewNote" >
+      <div class="note-send" @click="saveNote" >
         <img src="/icons/carbon_add-alt.svg" width="30" height="30" >
       </div>
     </div>
@@ -75,13 +75,17 @@ export default {
     isLoggedIn(){
       return this.$store.state.auth.isLoggedIn
     },
+    currentNote(){
+      return this.$store.state.note.selectedNote
+    }
   },
 
 
   methods: {
 
     addNewNote() {
-        this.$store.commit('addNewNote', this.newNoteText)
+      console.log('ebani userID = ', this.$store.state.auth.currentUser.id )
+      this.$store.commit('addNewNote', { title: this.newNoteText, userId: this.$store.state.auth.currentUser.id})
       this.newNoteText = ''
     },
     selectNote(note){
@@ -91,6 +95,15 @@ export default {
     },
     downloadNotes(){
       this.$store.dispatch('getAllUserNotes', this.$store.state.auth.currentUser)
+    },
+    saveNote(){
+      this.$store.dispatch('saveNote', this.$store.state.note.selectedNote)
+    },
+    deleteNote(notes, index, count){
+      console.log('note del', notes[index].id)
+      this.$store.dispatch('deleteNote', notes[index].id)
+      notes.splice(index, count)
+
     }
 
   },

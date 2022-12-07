@@ -127,7 +127,10 @@ export default {
     pressLogout(){
       this.$store.dispatch('logout')
      // this.$route.push({name: 'hello'})
-      this.$router.go(0); //todo временно, т.к. не работает переход на home
+      localStorage.clear()
+      this.$store.commit('clearNote')
+      this.$router.push({name: 'home'})
+      //this.$router.go(0); //todo временно, т.к. не работает переход на home
     },
     pressLogin(){
       this.$store.dispatch('login')

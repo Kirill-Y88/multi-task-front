@@ -10,10 +10,23 @@ const getAllUsersNote = (currentUser) =>{
     return axios.get('api/v1/notes/userId', config)
 }
 
+const saveNote = (node) =>{
+    return axios.post('/api/v1/notes/save',node)
+}
 
 
+const deleteNoteById = (noteId) => {
+    let config = {
+        params: {
+            noteId: noteId
+        },
+    }
+    return axios.delete('api/v1/notes/delete',config)
+}
 
 
 export default {
-    getAllUsersNote
+    getAllUsersNote,
+    saveNote,
+    deleteNoteById
 }

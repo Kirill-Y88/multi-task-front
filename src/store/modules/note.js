@@ -1,24 +1,14 @@
 import nodeAPI from "@/api/nodeAPI";
 
 const state = {
-
     //newNoteText: '',
     notes: [
-        {
-            id: 1,
-            title: 'Do the dishes',
-            content: 'hdhahhhdhehh'
-        },
-        {
-            id: 2,
-            title: 'Take out the trash',
-            content: 'hdhhwyqqqdhfdh'
-        },
-        {
-            id: 3,
-            title: 'Mow the lawn',
-            content: 'hwwytryethdfh'
-        }
+        // {
+        //     id: 1,
+        //     title: 'Do the dishes',
+        //     content: 'hdhahhhdhehh'
+        // },
+
     ],
     nextNoteId: 4,
     selectedNoteId: 0,
@@ -29,13 +19,17 @@ const state = {
 
 
 const mutations = {
-    addNewNote(state, title){
+    addNewNote(state, payload){
+        console.log('state', state)
+        console.log('title', payload.title)
+        console.log('user', payload.userId)
         state.notes.push({
-            id: state.nextNoteId,
-            title: title,
-            content: ''
+            id: -1,
+            title: payload.title,
+            content: '',
+            userId: payload.userId
         })
-        state.nextNoteId++
+
     },
     changeSelectedNote(state,  note){
         state.selectedNoteId = note.id
@@ -43,6 +37,9 @@ const mutations = {
     },
     downloadNote(state, payload){
         state.notes = payload
+    },
+    clearNote(state){
+        state.notes = []
     }
 
 }
@@ -62,6 +59,32 @@ const actions = {
                 })
         } )
     },
+    saveNote(context, note){
+        console.log('saveNote context: ', context)
+
+        console.log('saveNote note): ', note)
+        return new Promise( () =>{
+            nodeAPI.saveNote(note)
+                .then(response => {
+                    console.log('saveNote response: ', response)
+                })
+                .catch(result => {
+                    console.log('result errors', result)
+                })
+        })
+    },
+    deleteNote(context, noteId){
+        return new Promise(()=>{
+            nodeAPI.deleteNoteById(noteId)
+                .then(response => {
+                    console.log('deleteNote response: ', response)
+                })
+                .catch(result => {
+                    console.log('result errors', result)
+                })
+        })
+    }
+
 
 
 }
