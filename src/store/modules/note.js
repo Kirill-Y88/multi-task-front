@@ -12,7 +12,7 @@ const state = {
     ],
     nextNoteId: 4,
     selectedNoteId: 0,
-    selectedNote:{}
+    selectedNote: {}
 
 }
 
@@ -34,6 +34,9 @@ const mutations = {
     changeSelectedNote(state,  note){
         state.selectedNoteId = note.id
         state.selectedNote = note
+    },
+    addIdSelectedNote(state, id){
+      state.selectedNote.id = id;
     },
     downloadNote(state, payload){
         state.notes = payload
@@ -67,6 +70,9 @@ const actions = {
             nodeAPI.saveNote(note)
                 .then(response => {
                     console.log('saveNote response: ', response)
+                    if(response.data.status!==-1){
+                    context.commit('addIdSelectedNote', response.data.status)}
+
                 })
                 .catch(result => {
                     console.log('result errors', result)

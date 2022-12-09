@@ -1,7 +1,7 @@
 <template>
   <div class="auth-register font_2">
     <h3>Authorization</h3>
-    <form @submit.prevent = "onSubmit" >
+    <form @submit.prevent = "Submit" >
         <fieldset class="auth-fieldset font_2">
           <input class="font_2" v-model="login" placeholder="username" >
           <input class="font_2" v-model="password" type="password" placeholder="password">
@@ -31,7 +31,8 @@ export default {
   methods:{
 
     onSubmitAuto(){
-           this.$store.dispatch('authorization', {
+      localStorage.clear()
+        this.$store.dispatch('authorization', {
         login: this.login,
         password: this.password
       })

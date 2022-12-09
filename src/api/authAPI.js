@@ -8,6 +8,10 @@ const authorization = credentials =>{
     return axios.post('/login',credentials)
 }
 
+const registration = credentials => {
+    return axios.post('/signup', credentials)
+}
+
 const getCurrentUser = () => {
     return axios.get('/user')
 }
@@ -28,5 +32,6 @@ export default {
     register,
     authorization,
     getCurrentUser,
+    registration,
     tempGetAllUsers
 }

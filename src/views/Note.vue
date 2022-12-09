@@ -21,15 +21,16 @@
             :key="note.id"
             :title="note.title"
             @remove="deleteNote(notes,index,1)"
-            @click="selectNote(note)"
+            @click="selectNote(note, index)"
+            v-bind:class="{'note-active-item': index === activeIndex}"
         ></mcv-note-item>
       </ul>
-      <!--@remove="notes.splice(index, 1)"-->
+
     </div>
     <div class="notes-content">
-<!--      {{currentSelectedNoteTitle}}-->
-<!--      {{currentNoteContent}}-->
-      <div class="note-title">{{currentSelectedNoteTitle}} </div>
+<!--      <div class="note-title">{{currentSelectedNoteTitle}} </div>-->
+      <input class="note-title"  v-model="this.$store.state.note.selectedNote.title"
+             maxlength="25">
       <textarea v-model="this.$store.state.note.selectedNote.content"
                 class="note-text-area"></textarea>
       <div class="note-send" @click="saveNote" >
@@ -56,7 +57,7 @@ export default {
        newNoteText: '',
  //      notes: this.$store.state.note.notes,
   //     nextNoteId: this.$store.state.note.nextNoteId,
-
+        activeIndex: ''
     }
   },
   computed:{
@@ -88,8 +89,10 @@ export default {
       this.$store.commit('addNewNote', { title: this.newNoteText, userId: this.$store.state.auth.currentUser.id})
       this.newNoteText = ''
     },
-    selectNote(note){
+    selectNote(note, index){
+      this.activeIndex = index
       this.$store.commit('changeSelectedNote',note)
+      console.log('activeIndex', this.activeIndex)
       console.log('note', note)
       console.log('content',this.currentNoteContent)
     },

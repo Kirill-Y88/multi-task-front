@@ -65,13 +65,33 @@ const actions ={
         })
     },
 
+    registration(context,credentials) {
+        return new Promise(resolve => {
+            context.commit('registerStart')
+            authAPI.registration(credentials)
+                .then(response =>{
+                    console.log('response', response)
+                    context.commit('registerSuccess', response.data.user)
+                    setItem('accessToken', response.data.token)
+                    resolve(response.data.user)
+                })
+                .catch(result =>{
+                    context.commit('registerFailure', result.response.data.errors)
+                    console.log('result errors', result)
+                })
+        })
+    },
+
+
+
     logout(context){
         console.log('context', context)
+        localStorage.clear()
         return context.commit('registerLogout')
     },
     login(context){
         console.log('context', context)
-        return context.commit('registerSuccess')
+      //  return context.commit('registerSuccess')
     },
     tempRequest(context, user){
         return new Promise( () =>{

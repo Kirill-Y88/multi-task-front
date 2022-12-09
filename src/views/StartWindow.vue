@@ -4,10 +4,10 @@
       <div v-if="!isLoggedIn">
         <p class="font_2" >Вход не выполнен</p>
         <router-link v-bind:to="{name: 'authorization'}">Auto</router-link>
-          <span>||</span>
+          <span>| |</span>
         <router-link v-bind:to="{name: 'registration'}">Regist</router-link>
       </div>
-    <button @click="tempGetAllUsers"> TEST getAllUsers</button>
+<!--    <button @click="tempGetAllUsers"> TEST getAllUsers</button>-->
     <p class="font_2" v-if="isLoggedIn">Здравствуй, дорогой {{currentUser.login}}!</p>
   </div>
 

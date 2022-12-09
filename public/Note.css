@@ -29,6 +29,7 @@
     display: flex;
     margin : 0px 0px;
     padding: 10px 5px;
+    font-size: 18px;
 }
 
 .note-form{
@@ -55,4 +56,8 @@
 }
 .note-send{
     padding: 15px;
+}
+
+.note-active-item{
+    background: rgba(195, 210, 210, 1);
 }
