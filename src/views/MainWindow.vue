@@ -49,24 +49,10 @@
 
   </div>
 
-<!--  <div  class = "main-app-window">-->
-<!--&lt;!&ndash;    Главное окно приложения {{isContButton}} раз {{isCount}} count&ndash;&gt;-->
-<!--    <mcv-note v-if="isNote"></mcv-note>-->
-<!--    <mcv-chat v-if="isChat"></mcv-chat>-->
-<!--    <mcv-f-consultant v-if="isFConsultant"></mcv-f-consultant>-->
-<!--    <mcv-news v-if="isNews"></mcv-news>-->
-<!--    <mcv-profile v-if="isProfile"></mcv-profile>-->
-<!--  </div>-->
-
-<!--</div>-->
 </template>
 
 <script>
-// import McvNote from '@/components/Note.vue'
-// import McvChat from '@/components/Chat.vue'
-// import McvFConsultant from '@/components/FConsultant.vue'
-// import McvNews from '@/components/News.vue'
-// import McvProfile from '@/components/Profile.vue'
+
 
 export default {
   name: 'MainWindow',
