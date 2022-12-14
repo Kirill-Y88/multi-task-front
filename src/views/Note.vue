@@ -15,7 +15,7 @@
         </div>
 
       </form>
-      <ul>
+      <ul class="note-list-present">
         <mcv-note-item
             v-for="(note,index) in notes"
             :key="note.id"

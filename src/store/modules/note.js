@@ -50,7 +50,7 @@ const actions = {
 
     getAllUserNotes(context, user){
         return new Promise( () =>{
-            context.commit('registerStart')
+            context.commit('registerStart') //todo проверить на удаление
             nodeAPI.getAllUsersNote(user)
                 .then(response => {
                     context.commit('downloadNote',response.data)
@@ -70,7 +70,7 @@ const actions = {
             nodeAPI.saveNote(note)
                 .then(response => {
                     console.log('saveNote response: ', response)
-                    if(response.data.status!==-1){
+                    if(response.data.status!==-1){   //в статусе передаю id записки
                     context.commit('addIdSelectedNote', response.data.status)}
 
                 })

@@ -61,3 +61,15 @@
 .note-active-item{
     background: rgba(195, 210, 210, 1);
 }
+
+.note-list-present{
+    height: 100%;
+    overflow: auto;
+}
+.my-message{
+    padding-left: 35px;
+
+    background: blanchedalmond;
+    text-align: right;
+    /*margin-left: auto;*/
+}

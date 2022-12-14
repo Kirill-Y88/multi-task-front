@@ -115,6 +115,7 @@ export default {
      // this.$route.push({name: 'hello'})
      // localStorage.clear()
       this.$store.commit('clearNote')
+      this.$store.commit('chatListClear')
       this.$router.push({name: 'home'})
 
     },
