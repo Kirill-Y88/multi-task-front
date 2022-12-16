@@ -1,6 +1,8 @@
 <template>
-  <li class="note-item"   >
-    <div class="note-title" :class="{'my-message': iSent }" >{{ title }}</div>
+  <li class="chat-item"   >
+    <div class="chat-title message"
+         :class="{'my-message': iSent, 'another-message': !iSent }"
+         >{{ message }}</div>
   </li>
 </template>
 
@@ -8,7 +10,7 @@
 
 export default {
   name: 'McvMessagesChat',
-  props: ['title', 'iSent'],
+  props: ['message', 'iSent'],
 
 }
 

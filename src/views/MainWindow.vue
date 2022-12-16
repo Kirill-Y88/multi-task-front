@@ -63,6 +63,9 @@ export default {
     // McvNews,
     // McvProfile
   },
+
+
+
   computed:{
     isContButton(){
       return this.$store.state.main.countButton
@@ -171,7 +174,9 @@ export default {
     }
 
 
-  }
+  },
+
+
 
 }
 

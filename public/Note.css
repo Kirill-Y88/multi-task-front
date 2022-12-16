@@ -66,10 +66,15 @@
     height: 100%;
     overflow: auto;
 }
-.my-message{
-    padding-left: 35px;
-
-    background: blanchedalmond;
-    text-align: right;
-    /*margin-left: auto;*/
-}
+/*.message{*/
+/*    border: darkgray solid 1px;*/
+/*}*/
+/*.my-message{*/
+/*    margin-left: 35px;*/
+/*    background: blanchedalmond;*/
+/*    text-align: right;*/
+/*}*/
+/*.another-message{*/
+/*    margin-right: 35px;*/
+/*    background: gainsboro;*/
+/*}*/

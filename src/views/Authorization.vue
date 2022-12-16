@@ -38,6 +38,7 @@ export default {
       })
           .then(user => {
             console.log('successfully register user', user)
+            this.$store.dispatch('getAllUserChats', this.$store.state.auth.currentUser)
             this.$router.push({name: 'home'})
           })
 

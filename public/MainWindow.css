@@ -3,7 +3,8 @@ body, html{
  height: 100%;
 }
 .main{
- height: 1080px;
+ /*height: 1080px;*/
+ height: 920px;
  width: 100%;
  display: grid;
  grid-template-columns: 75px 95%;

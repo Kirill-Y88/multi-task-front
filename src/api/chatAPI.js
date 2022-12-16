@@ -38,7 +38,7 @@ const getCountUserChats = (currentUser, count) =>{
 }
 
 const sendMsg = (msg) =>{
-    return axios.post('/api/v1/messages/save',msg)
+    return axios.post('/api/v1/messages/sendMsg',msg)
 }
 
 export default {

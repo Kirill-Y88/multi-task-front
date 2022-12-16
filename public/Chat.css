@@ -1,0 +1,97 @@
+.chat{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 350px 80%;
+    grid-template-rows: 100%;
+
+}
+.chats-list{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: rgba(187, 200, 200, 1);
+}
+
+.chat-item{
+    display: grid;
+    grid-template-columns: 90% 10%;
+}
+.chat-item:hover {
+    background: rgba(195, 210, 210, 1);
+}
+
+.chat-title, .chat-delete{
+    display: flex;
+    /*display: grid;*/
+    margin : 0px 0px;
+    padding: 10px 5px;
+    font-size: 18px;
+}
+
+.chat-form{
+    display: grid;
+    padding-left: 40px;
+    grid-template-columns: 90% 10%;
+}
+.chat-name-placeholder, .note-submit{
+    display: flex;
+}
+.chats-content{
+    display: grid;
+    grid-template-rows: 90% 10%;
+    background: rgba(195, 210, 210, 1);
+}
+.chat-text-area{
+
+    margin : 0 0;
+    padding: 5px 5px;
+    display: flex;
+    resize: none;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+}
+.chat-send{
+    padding: 15px;
+}
+
+.chat-active-item{
+    background: rgba(195, 210, 210, 1);
+}
+
+.chat-list-present{
+    height: 100%;
+    overflow: auto;
+}
+
+
+.chat-message-list{
+    /*height: 80%;*/
+    display: grid;
+}
+
+.send-field{
+    /*height: 20%;*/
+    display: grid;
+    grid-template-columns: 90% 10%;
+}
+
+
+.message{
+    border: darkgray solid 1px;
+}
+.my-message{
+    margin-left: 35px;
+    background: blanchedalmond;
+    text-align: right;
+}
+.another-message{
+    margin-right: 35px;
+    background: gainsboro;
+}
+.count-dont-read-message{
+    /*display: grid;*/
+    background-color: darksalmon;
+}

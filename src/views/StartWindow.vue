@@ -31,8 +31,15 @@ export default {
     tempGetAllUsers(){
       this.$store.dispatch('getAllUserNotes', this.$store.state.auth.currentUser)
     }
+  },
+
+
+  mounted() {
+   // this.$store.dispatch('getAllUserChats', this.$store.state.auth.currentUser)
   }
 
 }
+
+
 
 </script>
