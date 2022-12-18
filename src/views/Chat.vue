@@ -30,7 +30,7 @@
 
     <div class="chats-content">
       <div class="chat-message-list">
-      <ul >
+      <ul class="chat-message-list-ul">
         <mcv-messages-chat
             v-for="(chat) in currentSelectChat.messages"
             :key="chat.id"
@@ -44,7 +44,7 @@
                   placeholder="Напиши ему все что думаешь (о нем)"
         v-model="textAreaMessage">MESSAGE-FORM</textarea>
         <div class="message-send"
-        @click="dontReadMsg">MESSAGE-SEND</div>
+        @click="sendMsg">MESSAGE-SEND</div>
 
       </div>
 
@@ -80,9 +80,7 @@ export default {
 
 
   computed:{
-    // allParticipants(){
-    //   return this.$store.state.chat.allParticipants
-    // },
+
     allChats(){
       return this.$store.state.chat.allChats
     },
@@ -98,6 +96,7 @@ export default {
 
   methods:{
 
+
     dontReadMsg(){
       let countDontRead = 0
       for (let i = 0; i < this.allChats.length; i++) {
@@ -111,13 +110,24 @@ export default {
       return countDontRead
     },
 
+
+
+
     downloadChats(){
       this.$store.dispatch('getAllUserChats', this.$store.state.auth.currentUser)
 
     },
+
+    refreshChats(){
+      this.$store.dispatch('startSurvey', this.$store.state.auth.currentUser)
+
+
+    },
+
     selectChat(chat, index){
       this.activeIndex = index
-      this.$store.commit('changeSelectedChat', chat)
+      //this.$store.commit('changeSelectedChat', chat)
+      this.$store.dispatch('readMsgInSelectedChat', chat)
       //this.$store.commit('changeSelectedNote',chat)
       // this.$store.dispatch('getChatMessages',{currentUserId: this.$store.state.auth.currentUser.id,
       //                                         anotherUserId: chat.userId})
@@ -145,6 +155,7 @@ export default {
 
   mounted() {
    // this.downloadChats()
+   // this.refreshChats()
   },
 
 

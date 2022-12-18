@@ -70,6 +70,14 @@
 .chat-message-list{
     /*height: 80%;*/
     display: grid;
+
+}
+
+.chat-message-list-ul{
+    /*height: 80%;*/
+    height: 95%;
+    overflow: auto;
+    /*margin-bottom: 20px;*/
 }
 
 .send-field{

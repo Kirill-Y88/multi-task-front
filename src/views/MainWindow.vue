@@ -120,12 +120,15 @@ export default {
       this.$store.commit('clearNote')
       this.$store.commit('chatListClear')
       this.$router.push({name: 'home'})
+      //остановка опроса по чату
+      this.$store.dispatch('stopSurvey')
 
     },
     pressLogin(){
       //this.$store.dispatch('login')
       // this.$route.push({name: 'hello'})
       this.$router.push({name: 'home'})
+     // this.$store.commit('setMyInterval')
     }
     ,
     pressNote(){
@@ -161,7 +164,9 @@ export default {
       // this.$store.commit('toNews')
     },
     pressAdd() {
-      this.$router.push({name: 'home'})
+     // this.$router.push({name: 'home'})
+      //this.$store.dispatch('startSurvey', this.$store.state.auth.currentUser)
+      this.$store.dispatch('updateAllUserChats', this.$store.state.auth.currentUser)
     }
     ,
     pressProfile(){

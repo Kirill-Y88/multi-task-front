@@ -17,10 +17,9 @@ export default createStore({
             state.count++;
         },
 
-
-
     },
     actions: {
+
     },
     modules: {
         main,

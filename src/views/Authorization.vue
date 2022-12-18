@@ -30,6 +30,7 @@ export default {
 
   methods:{
 
+    //добавлено: загрузка чатов сразу после авторизации
     onSubmitAuto(){
       localStorage.clear()
         this.$store.dispatch('authorization', {
@@ -38,14 +39,15 @@ export default {
       })
           .then(user => {
             console.log('successfully register user', user)
+            //загрузка чата
             this.$store.dispatch('getAllUserChats', this.$store.state.auth.currentUser)
+            //старт опроса по изменениям чата
+            this.$store.dispatch('startSurvey', this.$store.state.auth.currentUser)
             this.$router.push({name: 'home'})
-          })
 
+          })
       this.login = ''
       this.password = ''
-
-
     }
   }
 

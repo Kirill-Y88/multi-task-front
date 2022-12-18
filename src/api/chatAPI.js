@@ -20,6 +20,16 @@ const getAllMessagesChat = (currentUserId, anotherUserId) =>{
     return axios.get('api/v1/messages/userChatMessages', config)
 }
 
+const getAllDontReadByUserChat = (currentUserId, anotherUserId) =>{
+    let config = {
+        params: {
+            userIdThis: currentUserId,
+            userIdThat: anotherUserId
+        },
+    }
+    return axios.get('api/v1/messages/userChatDontReadMessages', config)
+}
+
 const updateMsgList = (msgList) => {
     console.log('msgList', msgList)
     return axios.post('/api/v1/messages/updateMsgList',msgList)
@@ -41,10 +51,16 @@ const sendMsg = (msg) =>{
     return axios.post('/api/v1/messages/sendMsg',msg)
 }
 
+const readMsgList = (msgList) =>{
+    return axios.post('/api/v1/messages/updateMsgList',msgList)
+}
+
 export default {
     getAllUserChats,
     sendMsg,
     updateMsgList,
     getCountUserChats,
-    getAllMessagesChat
+    getAllMessagesChat,
+    readMsgList,
+    getAllDontReadByUserChat
 }
