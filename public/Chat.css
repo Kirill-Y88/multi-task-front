@@ -17,6 +17,7 @@
 .chat-item{
     display: grid;
     grid-template-columns: 90% 10%;
+
 }
 .chat-item:hover {
     background: rgba(195, 210, 210, 1);
@@ -77,6 +78,8 @@
     /*height: 80%;*/
     height: 95%;
     overflow: auto;
+    /*scroll-snap-align: end;*/
+
     /*margin-bottom: 20px;*/
 }
 
@@ -102,4 +105,33 @@
 .count-dont-read-message{
     /*display: grid;*/
     background-color: darksalmon;
+}
+
+.system-info{
+    color: red;
+}
+
+.message-send{
+    background-color: blanchedalmond;
+}
+
+#icons-chat-div{
+    display: grid;
+    grid-template-columns: 20px 25px 30px;
+    grid-template-rows: 10px 25px 40px;
+
+}
+
+#icons-chat{
+    /*display: grid;*/
+    margin: 0px 0px 0px 10px;
+    /*grid-area: 1/1/4/4;*/
+}
+
+.count-dont-read-message-all{
+    /*display: grid;*/
+    grid-area: 2/2/3/3;
+    color: brown;
+    font-weight: bold;
+    /*background-color: darksalmon;*/
 }

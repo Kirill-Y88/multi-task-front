@@ -9,9 +9,10 @@
                id="new-note"
                placeholder="Впиши название логина пользователя"
         />
-        <div class="chat-submit" @click="addNewNote" >
+        <div class="chat-submit" @click="addNewUserToChat" >
           <img src="/icons/carbon_add-alt.svg" width="30" height="30" >
         </div>
+        <mcv-chat-system-info-item v-if="!isFindUser"></mcv-chat-system-info-item>
 
       </form>
       <ul class="chat-list-present">
@@ -20,7 +21,6 @@
             :key="chat.userId"
             :title="chat.userLogin"
             :chat="chat"
-            @remove="deleteNote(allChats,index,1)"
             @click="selectChat(chat, index)"
             v-bind:class="{'note-active-item': index === activeIndex}"
         ></mcv-chat-item>
@@ -30,7 +30,7 @@
 
     <div class="chats-content">
       <div class="chat-message-list">
-      <ul class="chat-message-list-ul">
+      <ul class="chat-message-list-ul" id="message-list">
         <mcv-messages-chat
             v-for="(chat) in currentSelectChat.messages"
             :key="chat.id"
@@ -40,11 +40,15 @@
       </ul>
       </div>
       <div class="send-field">
-        <textarea class="message-form"
+        <textarea @submit.prevent="sendMsg"
+                  class="message-form"
                   placeholder="Напиши ему все что думаешь (о нем)"
         v-model="textAreaMessage">MESSAGE-FORM</textarea>
         <div class="message-send"
-        @click="sendMsg">MESSAGE-SEND</div>
+        @click="sendMsg">
+          <img src="/icons/send.svg">
+          SEND
+        </div>
 
       </div>
 
@@ -65,6 +69,7 @@
 //import McvNoteItem from '@/components/NoteItem.vue'
 import McvChatItem  from '@/components/ChatItem.vue'
 import McvMessagesChat from '@/components/MessagesChat.vue'
+import McvChatSystemInfoItem  from '@/components/ChatSystemInfoItem.vue'
 
 
 export default {
@@ -74,12 +79,17 @@ export default {
     return {
       findUser:'',
       activeIndex: '',
-      textAreaMessage: ''
+      textAreaMessage: '',
+      time:null
     }
   },
 
 
   computed:{
+
+    isFindUser(){
+      return this.$store.state.chat.isFindUser
+    },
 
     allChats(){
       return this.$store.state.chat.allChats
@@ -94,8 +104,23 @@ export default {
 
   },
 
+
   methods:{
 
+    moveScroll(){
+     this.time = setTimeout( () => {
+          let chat = document.getElementById("message-list")
+          chat.scrollTop = chat.scrollHeight
+         },100
+     )
+    },
+
+
+    addNewUserToChat(){
+      console.log('addNewUserToChat this.findUser',this.findUser)
+      this.$store.dispatch('findUserToChat', this.findUser)
+
+    },
 
     dontReadMsg(){
       let countDontRead = 0
@@ -131,6 +156,7 @@ export default {
       //this.$store.commit('changeSelectedNote',chat)
       // this.$store.dispatch('getChatMessages',{currentUserId: this.$store.state.auth.currentUser.id,
       //                                         anotherUserId: chat.userId})
+      this.moveScroll()
       console.log('activeIndex', this.activeIndex)
       console.log('chat', chat)
       console.log('current user', this.currentUser.id)
@@ -156,6 +182,7 @@ export default {
   mounted() {
    // this.downloadChats()
    // this.refreshChats()
+    this.moveScroll()
   },
 
 
@@ -164,7 +191,8 @@ export default {
 
   components: {
     McvChatItem,
-    McvMessagesChat
+    McvMessagesChat,
+    McvChatSystemInfoItem
   }
 
 

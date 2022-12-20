@@ -55,6 +55,16 @@ const readMsgList = (msgList) =>{
     return axios.post('/api/v1/messages/updateMsgList',msgList)
 }
 
+const findUser = (findUserLogin) =>{
+    console.log('chat user', findUserLogin)
+    let config = {
+        params: {
+            login: findUserLogin
+        },
+    }
+    return axios.get('api/v1/users/login', config)
+}
+
 export default {
     getAllUserChats,
     sendMsg,
@@ -62,5 +72,6 @@ export default {
     getCountUserChats,
     getAllMessagesChat,
     readMsgList,
-    getAllDontReadByUserChat
+    getAllDontReadByUserChat,
+    findUser
 }

@@ -12,15 +12,18 @@
 <!--      </router-link>-->
       </div>
 
-      <div  class = "main-icons" @click = "pressChat">
-        <img src="/icons/chat.svg">
+      <div  class = "main-icons" id="icons-chat-div" @click = "pressChat">
+        <template v-if="this.$store.getters.getCountDontReadMessages!==0">
+        <div class="count-dont-read-message-all">{{this.$store.getters.getCountDontReadMessages}}</div>
+        </template>
+        <img id="icons-chat" src="/icons/chat.svg">
       </div>
-      <div  class = "main-icons" @click = "pressFConsultant">
-        <img src="/icons/finance.svg">
-      </div >
-      <div  class = "main-icons" @click = "pressNews">
-        <img src="/icons/news.svg">
-      </div >
+<!--      <div  class = "main-icons" @click = "pressFConsultant">-->
+<!--        <img src="/icons/finance.svg">-->
+<!--      </div >-->
+<!--      <div  class = "main-icons" @click = "pressNews">-->
+<!--        <img src="/icons/news.svg">-->
+<!--      </div >-->
 
       <div class = "main-icons" @click = "pressAdd">
         <img src="/icons/carbon_add-alt.svg">
@@ -85,6 +88,10 @@ export default {
     validationErrors(){
       return this.$store.state.auth.validationErrors
     },
+
+    countDontReadMessages(){
+      return this.$store.state.chat.countDontReadMessages
+    }
     // isNote(){
     //   return this.$store.state.isNote
     // },
@@ -166,7 +173,7 @@ export default {
     pressAdd() {
      // this.$router.push({name: 'home'})
       //this.$store.dispatch('startSurvey', this.$store.state.auth.currentUser)
-      this.$store.dispatch('updateAllUserChats', this.$store.state.auth.currentUser)
+     // this.$store.dispatch('updateAllUserChats', this.$store.state.auth.currentUser)
     }
     ,
     pressProfile(){
@@ -177,12 +184,7 @@ export default {
       }
       // this.$store.commit('toProfile')
     }
-
-
   },
-
-
-
 }
 
 

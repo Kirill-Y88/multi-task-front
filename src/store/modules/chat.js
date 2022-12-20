@@ -23,7 +23,10 @@ const state = {
     selectChat: {},
 
     sessionSeconds:0,
-    survey: null
+    survey: null,
+    isFindUser: true,
+
+    countDontReadMessages: 0
 
 
 }
@@ -164,17 +167,34 @@ const actions = {
 
 
     startSurvey(context, currentUser){
-
         context.state.survey = setInterval(
             () => {
-                context.dispatch('getAllUserChats', currentUser)
+                context.dispatch('updateAllUserChats', currentUser)
             }
-            , 1000)
-
+            , 2000)
     },
 
     stopSurvey(context){
         context.commit('stopSurvey')
+    },
+
+    findUserToChat(context, userLogin){
+        console.log('findUserToChat userLogin',userLogin)
+        return new Promise( () => {
+            chatAPI.findUser(userLogin)
+                .then(response => {
+                    console.log('findUserToChat response',response.data )
+                    context.commit('addUserToChat', response.data)
+                    context.commit('finedUser')
+                    //  console.log('resp sendMsg',response)
+                })
+                .catch(result => {
+                console.log('result errors', result)
+                    console.log('result errors response', result.response.data.message)
+                    context.commit('dontFinedUser')
+            })
+        })
+
     }
 
 
@@ -184,6 +204,8 @@ const mutations = {
 
     changeSelectedChat(state, chat){
         state.selectChat = chat
+      //  let pastChatDontRead = state.selectChat.chatDontRead
+      //  state.countDontReadMessages = state.countDontReadMessages-pastChatDontRead
         state.selectChat.chatDontRead = 0;
         for (let i = 0; i < state.selectChat.messages.length; i++) {
             if(chat.messages[i].userToId === this.state.auth.currentUser.id)
@@ -236,6 +258,28 @@ const mutations = {
        // state.allChats = payload.data
     },
 
+    addUserToChat(state, user){
+        let tempChats = {
+            userId: user.id,
+            userLogin: user.login,
+            chatDontDownload: 0,
+            chatDontRead: 0,
+            messages: []
+        }
+        let find = false
+        for (let i = 0; i < state.allChats.length; i++) {
+            if(tempChats.userId === state.allChats[i].userId){
+                find = true
+                break
+            }
+        }
+
+        if(find === false){
+            state.allChats.push(tempChats)
+        }
+
+    },
+
     addMessageForSelectChat(state, payload){
         state.selectChat.messages.push(payload)
     },
@@ -254,7 +298,7 @@ const mutations = {
               }
             }
         state.allChats[payload.index].chatDontRead = countDontRead
-
+       // state.countDontReadMessages = state.countDontReadMessages + countDontRead
     },
 
     addDontReadChatMessages(state, payload){
@@ -285,7 +329,7 @@ const mutations = {
             }
         }
         state.allChats[payload.index].chatDontRead = countDontRead
-
+       // state.countDontReadMessages = state.countDontReadMessages + countDontRead
     },
 
     addSurvey(state, numberSurvey){
@@ -296,8 +340,24 @@ const mutations = {
         clearInterval(state.survey)
     },
 
+    finedUser(state){
+        state.isFindUser = true
+    },
 
+    dontFinedUser(state){
+        state.isFindUser = false
+    }
 
+}
+
+const getters = {
+    getCountDontReadMessages: state => {
+        let temp = 0
+        for (let i = 0; i < state.allChats.length; i++) {
+            temp = temp + state.allChats[i].chatDontRead
+        }
+        return temp
+    }
 }
 
 
@@ -308,5 +368,6 @@ const mutations = {
 export default {
     state,
     actions,
-    mutations
+    mutations,
+    getters
 }
