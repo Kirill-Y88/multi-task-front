@@ -28,6 +28,7 @@
 
     </div>
 
+   <template v-if="currentSelectChat!==null">
     <div class="chats-content">
       <div class="chat-message-list">
       <ul class="chat-message-list-ul" id="message-list">
@@ -40,7 +41,8 @@
       </ul>
       </div>
       <div class="send-field">
-        <textarea @submit.prevent="sendMsg"
+        <textarea maxlength="1000"
+                  @keyup.ctrl.enter.prevent="sendMsg"
                   class="message-form"
                   placeholder="Напиши ему все что думаешь (о нем)"
         v-model="textAreaMessage">MESSAGE-FORM</textarea>
@@ -49,11 +51,9 @@
           <img src="/icons/send.svg">
           SEND
         </div>
-
       </div>
-
-
     </div>
+   </template>
 
 
   </div>

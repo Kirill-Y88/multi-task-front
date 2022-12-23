@@ -5,7 +5,8 @@
       <h3>Список заметок</h3>
       <form class="note-form" v-on:submit.prevent="addNewNote">
 <!--        <label for="new-note">Добавить задачу</label>-->
-        <input class="note-name-placeholder"
+        <input maxlength="25"
+            class="note-name-placeholder"
             v-model="newNoteText"
             id="new-note"
             placeholder="Впиши название заметки"
@@ -31,7 +32,8 @@
 <!--      <div class="note-title">{{currentSelectedNoteTitle}} </div>-->
       <input class="note-title"  v-model="this.$store.state.note.selectedNote.title"
              maxlength="25">
-      <textarea v-model="this.$store.state.note.selectedNote.content"
+      <textarea maxlength="1800"
+                v-model="this.$store.state.note.selectedNote.content"
                 class="note-text-area"></textarea>
       <div class="note-send" @click="saveNote" >
         <img src="/icons/carbon_add-alt.svg" width="30" height="30" >

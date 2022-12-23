@@ -70,13 +70,13 @@ const actions ={
             context.commit('registerStart')
             authAPI.registration(credentials)
                 .then(response =>{
-            //        console.log('response', response)
+                    console.log('response', response)
                     context.commit('registerSuccess', response.data.user)
                     setItem('accessToken', response.data.token)
                     resolve(response.data.user)
                 })
                 .catch(result =>{
-                    context.commit('registerFailure', result.response.data.errors)
+                    context.commit('registerFailure', result.response.data.message)
                     console.log('result errors', result)
                 })
         })

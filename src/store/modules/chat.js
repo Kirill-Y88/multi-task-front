@@ -20,7 +20,7 @@ const state = {
      //   }
     ],
 
-    selectChat: {},
+    selectChat: null,
 
     sessionSeconds:0,
     survey: null,
@@ -212,6 +212,10 @@ const mutations = {
             state.selectChat.messages[i].downloaded = true
             state.selectChat.messages[i].read = true
         }
+    },
+    
+    clearSelectChat(state){
+      state.selectChat = null
     },
 
     chatListClear(state) {

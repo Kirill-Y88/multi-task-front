@@ -129,6 +129,7 @@ export default {
       this.$router.push({name: 'home'})
       //остановка опроса по чату
       this.$store.dispatch('stopSurvey')
+      this.$store.commit('clearSelectChat')
 
     },
     pressLogin(){

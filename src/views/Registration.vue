@@ -7,9 +7,13 @@
         <input class="font_2" v-model="email" type="text" placeholder="email">
 <!--        <input class="font_2" v-model="name" type="text" placeholder="имя">-->
         <input class="font_2" v-model="password" type="password" placeholder="password">
-        <button class="font_2" @click="onSubmitRegister" > Send</button>
-
+        <button class="font_2" @click="onSubmitRegister"
+        :disabled="login == '' || email == '' || password == ''"
+        > Send</button>
       </fieldset>
+      <template v-if="validationErrors!==null">
+      <h3 class="system-info">{{validationErrors}}</h3>
+      </template>
     </form>
   </div>
 </template>
@@ -22,9 +26,16 @@ export default {
       login: '',
       email: '',
       name:'tempUser',
-      password: ''
+      password: '',
+      error:''
     }
   },
+  computed:{
+    validationErrors(){
+      return this.$store.state.auth.validationErrors
+    }
+  },
+
   methods:{
 
     onSubmitRegister(){
