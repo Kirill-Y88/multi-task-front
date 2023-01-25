@@ -1,7 +1,8 @@
 import axios from 'axios'
 import {getItem} from '@/helpers/persistanceStorage'
 
-axios.defaults.baseURL = 'http://localhost:8083/mt/'
+//axios.defaults.baseURL = 'http://localhost:8083/mt/'
+axios.defaults.baseURL = 'http://51.250.20.10:8083/mt/'
 
 axios.interceptors.request.use(config =>{
  //   console.log('config', config)
